@@ -1,0 +1,46 @@
+group 'com.ybigta'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    ext {
+        javaVersion = '1.8'
+        javaEncoding = 'UTF-8'
+        springBootVersion = '1.5.8.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+jar {
+    baseName = 'chatot-app'
+    //version = '0.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+[compileJava, compileTestJava]*.options*.encoding = javaEncoding
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-test")
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok-maven
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
+
+    compile 'com.google.guava:guava:23.4-jre'
+
+}
